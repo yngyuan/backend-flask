@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% set active_page = 'create-report' %}
+{% block page_title%}Create-Report{% endblock %}
+<!--
+{% block css_script %}<link rel="stylesheet" href="{{ url_for('static', filename='CreateReport.css') }}">
+{% endblock %}
+-->
+{% block self_content %}
+    <section id="contact" style="color:#5e5d5d;">
+    <div class="section-content">
+        <h3>Post Report</h3>
+        {{ failinfo }}
+    </div>
+    <div class="contact-section">
+        <div class="container">
+
+            <form method = "POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6 form-line">
+
+                        <label for="chooseTheme">Theme</label>
+                        <select class="form-control" name="ThemeName" id="chooseTheme">
+                            <option value="null" SELECTED>Select from Themes</option>
+                            {% for name in theme_list %}
+                            <option value= "{{name}}">{{name}}</option>"
+                            {% endfor %}
+                        </select>
+
+                        <div class="form-group">
+                            <label for="inputReportTitle">Report Title</label>
+                            <input type="text" name="ReportTitle" class="form-control" id="inputReportTitle" placeholder="Enter your report title">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Report Tags</label>
+                            <br>
+                            <!--<input type="text" name="ReportTags" class="form-control" id="inputReportTags" placeholder="Enter your report tags, separate tags with commas">-->
+                            <label for="inputBookName" style="font-size: medium">Book Name</label>
+                            <input type="text" name="BookName" class="form-control" id="inputBookName" placeholder="Enter the related book name" style="font-size: medium">
+                            <label for="inputBookAuthor" style="font-size: medium">Author</label>
+                            <input type="text" name="Author" class="form-control" id="inputBookAuthor" placeholder="Enter the related book author" style="font-size: medium">
+                            <label for="inputBookProperty" style="font-size: medium">Book Property</label>
+                            <input type="text" name="BookProperty" class="form-control" id="inputBookProperty" placeholder="Enter the related book property" style="font-size: medium">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputReportImage">Report Image</label>
+                            <!--<input type="text" name="ReportImage" class="form-control" id="inputReportImage" placeholder="Enter your image url">-->
+                            <br/>
+                            <input type="file" class="form-control-file" name="ReportImage" id="inputReportImage" accpet="image/*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputReportLocation">Report Location</label>
+                            <input type="text" name="ReportLocation" class="form-control" id="inputReportLocation" placeholder="Enter your current location">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for ="inputReportDescription">Report Description</label>
+                            <textarea name="ReportDescription" class="form-control" id="inputReportDescription" placeholder="Enter your report description"
+                            style="width: 100%; height: 300px"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="btnSubmitReport" class="btnContact" value="Submit" style="background-color: #ffe3ed;"/>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="reset" name="btnCancelReport" class="btnContact" value="Cancel" style="background-color: #ffe3ed;"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Report Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CreateReport.css') }}">
+    &lt;!&ndash; Bootstrap CSS file &ndash;&gt;
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    &lt;!&ndash; JS files: jQuery first, then Popper.js, then Bootstrap JS &ndash;&gt;
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top nav-pills"
+         style="background-color: #ddeeff;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+        <a href="manage.html" class="nav-item nav-link">Manage</a>
+        <a href="Create.html" class="nav-item nav-link active">Create</a>
+        <a href="View.html" class="nav-item nav-link">View</a>
+        <a href="Search.html" class="nav-item nav-link">Search</a>
+        <a href="Social.html" class="nav-item nav-link">Social</a>
+
+    </nav>
+</header>
+
+
+<section id="contact">
+    <div class="section-content">
+        <h3>Post Report</h3>
+    </div>
+    <div class="contact-section">
+        <div class="container">
+
+            <form action = "http://localhost:5000/createReport/result" method = "POST">
+                <div class="row">
+                    <div class="col-md-6 form-line">
+
+                        <label for="chooseTheme">Theme</label>
+                        <select class="form-control" name="ThemeName" id="chooseTheme">
+                            <option value="null" SELECTED>Select from Themes</option>
+                            {% for name in theme_list %}
+                            <option value= "{{name}}">{{name}}</option>"
+                            {% endfor %}
+                        </select>
+
+                        <div class="form-group">
+                            <label for="inputReportTitle">Report Title</label>
+                            <input type="text" name="ReportTitle" class="form-control" id="inputReportTitle" placeholder="Enter your report title">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputReportTags">Report Tags</label>
+                            <input type="text" name="ReportTags" class="form-control" id="inputReportTags" placeholder="Enter your report tags, separate tags with commas">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputReportImage">Report Image</label>
+                            <input type="text" name="ReportImage" class="form-control" id="inputReportImage" placeholder="Enter your image url">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputReportLocation">Report Location</label>
+                            <input type="text" name="ReportLocation" class="form-control" id="inputReportLocation" placeholder="Enter your current location">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for ="inputReportDescription">Report Description</label>
+                            <textarea name="ReportDescription" class="form-control" id="inputReportDescription" placeholder="Enter your report description"
+                            style="width: 100%; height: 300px"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="btnSubmitReport" class="btnContact" value="Submit" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="reset" name="btnCancelReport" class="btnContact" value="Cancel" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+</body>
+</html>-->

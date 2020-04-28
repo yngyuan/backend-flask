@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% set active_page = 'view' %}
+{% block page_title%}View{% endblock %}
+{% block css_script %}<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+{% endblock %}
+{% block self_content %}
+{% if length != 0 %}
+<div class="container">
+    <div class="card-deck">
+        {% set t_num = namespace(cnt=0) %}
+        {% for t in theme %}
+        {% set t_num.cnt = t_num.cnt + 1 %}
+        <a class="card mb-2 mt-2 ml-1 mr-1 " style="max-width:
+        13.5em; text-decoration: none;" href="{{ url_for('viewone',t_name=t.t_name) }}" target="_blank">
+
+            <div class="card-header">{{t.t_name}}</div>
+            <div class="card-body">
+                <div class="image">
+                    <img src="{{t.t_coverimage}}" class="card-img-top img-fluid">
+                </div>
+                <p class="card-text">{{t.t_description}}</p>
+
+            </div>
+        </a>
+        <!--  Ref: https://stackoverflow.com/questions/36430816/bootstrap-4-card-deck-with-number-of-columns-based-on-viewport -->
+        {% if t_num.cnt % 2 == 0 %}
+            <div class="w-100 d-none d-sm-block d-md-none">
+                <!-- wrap every 2 on sm-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 3 == 0 %}
+            <div class="w-100 d-none d-md-block d-lg-none">
+                <!-- wrap every 3 on md-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 4 == 0 %}
+            <div class="w-100 d-none d-lg-block d-xl-none">
+                <!-- wrap every 4 on lg-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 5 == 0 %}
+            <div class="w-100 d-none d-xl-block">
+                <!-- wrap every 5 on xl-->
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+      <div class= "emptytheme">
+	<h4>You haven't created any themes yet :)</h4>
+     </div>
+{% endif %}
+
+{% endblock %}
+
+<!--
+<h2>View All Themes</h2>
+<hr>
+      {% if length != 0 %}
+      <ul class = "themelist">
+          {% for t in theme %}
+              <li>
+            <a href="{{ url_for('view_one',t_name=t.t_name) }}" target="_blank">
+            <img src="{{ t.t_coverimage }}"  alt="{{ t.t_name }}"/>
+            <h3>{{ t.t_name }}</h3>
+            </a>
+            <button class="button"> Subscribe </button>
+            <p>{{ t.t_description }}</p>
+              </li>
+          {% endfor %}
+
+      </ul>
+      {% else %}
+      <div class= "emptytheme">
+	<h4>You haven't created any themes yet :)</h4>
+     </div>
+     {% endif %}
+
+-->

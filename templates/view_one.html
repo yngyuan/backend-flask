@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% set active_page = 'view' %}
+{% block page_title%}View{% endblock %}
+{% block css_script %}<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+{% endblock %}
+{% block self_content %}
+
+<h2>{{ t_name }}</h2>
+
+<div align="center"><button class="btn mt-2" onclick="subscribe()" style="background-color:#ffe3ed; color:white;"> Subscribe </button></div>
+<hr>
+{% if length != 0 %}
+<div class="container">
+    <div class="card-deck">
+        {% set t_num = namespace(cnt=0) %}
+        {% for r in report %}
+        {% set t_num.cnt = t_num.cnt + 1 %}
+        <div class="card mb-2 mt-2 ml-1 mr-1 " style="max-width:
+        13.5em; text-decoration: none;" href="" target="_blank">
+
+            <div class="card-header">{{r.r_title}}</div>
+            <div class="card-body">
+                <div class="image">
+                    <img src="{{r.r_url}}" class="card-img-top img-fluid">
+                </div>
+                <p class="card-text">{{r.r_description}}</p>
+                <small class="text-primary" style="line-height: 0em">
+                    Tags:
+                    {% set tag_num = namespace(c=0) %}
+                    {% for tag in r.r_tag_list if tag_num.c < 30 %}
+                    {% set tag_num.c = tag_num.c + 1 %}
+                        {{tag}};
+                    {% endfor %}
+
+                </small>
+                <br>
+                <small class="text-secondary" style="line-height: 0em">
+                    Location: {{r.r_location}}
+
+                </small>
+                <!--
+                <img src="{{ r.r_url }}" class="card-img-top img-fluid" alt="link broken">
+                <p class="card-text">{{ r.r_description }}</p>
+                -->
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    {{r.r_time}}
+                </small>
+            </div>
+        </div>
+        <!--  Ref: https://stackoverflow.com/questions/36430816/bootstrap-4-card-deck-with-number-of-columns-based-on-viewport -->
+        {% if t_num.cnt % 2 == 0 %}
+            <div class="w-100 d-none d-sm-block d-md-none">
+                <!-- wrap every 2 on sm-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 3 == 0 %}
+            <div class="w-100 d-none d-md-block d-lg-none">
+                <!-- wrap every 3 on md-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 4 == 0 %}
+            <div class="w-100 d-none d-lg-block d-xl-none">
+                <!-- wrap every 4 on lg-->
+            </div>
+        {% endif %}
+        {% if t_num.cnt % 5 == 0 %}
+            <div class="w-100 d-none d-xl-block">
+                <!-- wrap every 5 on xl-->
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+      <div class= "emptyreport">
+	  <h4>No report under this theme yet :)</h4>
+      </div>
+{% endif %}
+
+{% endblock %}
+

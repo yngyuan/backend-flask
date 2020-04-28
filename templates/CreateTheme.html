@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% set active_page = 'create-theme' %}
+{% block page_title%}Create-Report{% endblock %}
+<!--
+{% block css_script %}<link rel="stylesheet" href="{{ url_for('static', filename='CreateTheme.css') }}">
+{% endblock %}
+-->
+{% block self_content %}
+
+<section id="contact" style="background-color: #beebe9; color:#5e5d5d;">
+    <div class="section-content">
+        <h3>Post Theme</h3>
+        {{ failinfo }}
+    </div>
+    <div class="contact-section">
+        <div class="container">
+            <form method = "POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6 form-line">
+                        <div class="form-group">
+                            <label for="inputThemeName">Theme Name</label>
+                            <input type="text" name="ThemeName" class="form-control" id="inputThemeName" placeholder="Enter your theme name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputCoverImage">Cover Image</label>
+                            <!--<input type="text" name="CoverImage" class="form-control" id="inputCoverImage" placeholder="Enter your cover image url">-->
+                            <br/>
+                            <input type="file" class="form-control-file" name="CoverImage" id="inputCoverImage" accpet="image/*">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for ="inputThemeDescription">Theme Description</label>
+                            <textarea name="ThemeDescription" class="form-control" id="inputThemeDescription" placeholder="Enter your theme description"
+                            style="width: 100%; height: 150px"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="btnSubmitTheme" class="btnContact" value="Submit" style="background-color: #ffe3ed;"/>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="reset" name="btnSubmitTheme" class="btnContact" value="Cancel" style="background-color: #ffe3ed;"/>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Theme Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CreateTheme.css') }}">
+    &lt;!&ndash; Bootstrap CSS file &ndash;&gt;
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    &lt;!&ndash; JS files: jQuery first, then Popper.js, then Bootstrap JS &ndash;&gt;
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top nav-pills"
+         style="background-color: #ddeeff;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+        <a href="manage.html" class="nav-item nav-link">Manage</a>
+        <a href="Create.html" class="nav-item nav-link active">Create</a>
+        <a href="View.html" class="nav-item nav-link">View</a>
+        <a href="Search.html" class="nav-item nav-link">Search</a>
+        <a href="Social.html" class="nav-item nav-link">Social</a>
+
+    </nav>
+</header>
+
+<section id="contact">
+    <div class="section-content">
+        <h3>Post Theme</h3>
+    </div>
+    <div class="contact-section">
+        <div class="container">
+            <form action = "http://localhost:5000/createTheme/result" method = "POST">
+                <div class="row">
+                    <div class="col-md-6 form-line">
+                        <div class="form-group">
+                            <label for="inputThemeName">Theme Name</label>
+                            <input type="text" name="ThemeName" class="form-control" id="inputThemeName" placeholder="Enter your theme name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputCoverImage">Cover Image</label>
+                            <input type="text" name="CoverImage" class="form-control" id="inputCoverImage" placeholder="Enter your cover image url">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for ="inputThemeDescription">Theme Description</label>
+                            <textarea name="ThemeDescription" class="form-control" id="inputThemeDescription" placeholder="Enter your theme description"
+                            style="width: 100%; height: 150px"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="btnSubmitTheme" class="btnContact" value="Submit" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="reset" name="btnSubmitTheme" class="btnContact" value="Cancel" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+</body>
+</html>-->

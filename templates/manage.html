@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% set active_page = 'manage' %}
+{% block page_title%}manage{% endblock %}
+{% block css_script %}<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+{% endblock %}
+{% block script %}<script type="javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+{% block self_content %}
+	<div class="row justify-content-around">
+		<div class="col-md-5" style="margin-left: 2%;">
+			<div id = "report_list" >
+			  <h2 style="text-align: center; padding: 7%;">Your Posts</h2>
+			  {% if length != 0 %}
+			  <div class="row justify-content-around align-items-center"  style="border-right: 1px solid #B29999; margin-bottom:20%;">
+				<div class="col-2">
+				  <form action="/managedecr" method="get">
+					<button type="submit" class="btn mt-2" style="background-color: #ffe3ed; color:white;">Previous Post</button>
+				  </form>
+				</div>
+				<div class="col-8">
+					<div class="card mb-2 mt-2 ml-1 mr-1 " style="max-width:
+					27em; text-decoration: none;" href="test.html">
+
+						<div class="card-header">{{report.r_title}}</div>
+						<div class="card-body">
+							<div class="image">
+								<img src="{{report.r_url}}" class="card-img-top img-fluid">
+							</div>
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<small class="text-dark" style="line-height: 0em">
+								{{report.r_username}}
+							</small>
+							<p class="card-text">{{report.r_description}}</p>
+							<small class="text-primary" style="line-height: 0em">
+								Tags:
+								{% set tag_num = namespace(c=0) %}
+								{% for tag in report.r_tag_list if tag_num.c < 30 %}
+								{% set tag_num.c = tag_num.c + 1 %}
+									{{tag}};
+								{% endfor %}
+
+							</small>
+							<br>
+							<small class="text-secondary" style="line-height: 0em">
+								{{report.r_location}}
+
+							</small>
+						</div>
+						<div class="card-footer align-items-center row" style="width: 100%; margin-left: 0%;">
+							<small class="text-muted col-8" style="font-size:100%;">
+								{{report.r_time}}
+							</small>
+							<form action="/managedele/0" method="post" class="col-4">
+							<button type="submit" class="btn" style="background-color: #ffe3ed; color:white; float: right;">Delete</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+				  <form action="/manageincr" method="get">
+					<button type="submit" class="btn mt-2" style="float:right; background-color: #ffe3ed; color:white;">Next Post</button>
+				  </form>
+				</div>
+			  </div>
+			{% else %}
+			  <div class="emptyreport">
+			<h4>You haven't created any reports yet :)</h4>
+			  </div>
+			 {% endif %}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div id = "sub_themes">
+			  <h2 style="text-align: center; padding: 7%;">Subscribed Genre</h2>
+			  <div class="row justify-content-start class-deck" style="margin-top: -2.5%;">
+			{% for theme in themes %}
+			
+				<div class="col-3">
+					<div class="max-width:
+						13.5em; card mb-2 mt-2 ml-1 mr-1 " style=" text-decoration: none;" href="test.html">
+
+						<div class="card-header">{{theme.t_name}}</div>
+						<div class="card-body">
+							<div>
+								<img src="{{theme.t_coverimage}}" class="card-img-top img-fluid">
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			  </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+.section-content{
+  text-align: center;
+}
+
+.contact-section{
+  padding-top: 40px;
+}
+
+.contact-section .col-md-6{
+  width: 50%;
+}
+
+.form-line{
+  border-right: 1px solid #B29999;
+}
+
+.form-group{
+  margin-top: 10px;
+}
+
+label{
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: normal;
+}
+
+.form-control{
+  font-size: 1.3em;
+  color: #080808;
+}
+
+.btnContact{
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+}
+#contact{
+  padding-top: 60px;
+  width: 100%;
+  width: 100vw;
+  height: 1000px;
+  background: #ddeeff;
+  color : black;
+}

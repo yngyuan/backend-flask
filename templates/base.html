@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{% block page_title %}{% endblock %}</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    {% block css_script %}{% endblock %}
+    </head>
+    <body style="background-color:#beebe9; color:#5e5d5d;">
+        <header>
+            <style type="text/css">
+                .nav-pills .nav-link{
+                    color:white !important;
+                }
+                .nav-pills .nav-link.active{
+                    background-color: #ffe3ed !important;
+                }
+            </style>
+            <nav class="navbar navbar-expand-md navbar-inverse sticky-top nav-pills"
+                 style="background-color:
+            #9be3de;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/manage.html"
+                               class="nav-item nav-link {{ 'active' if active_page == 'manage' else '' }}">Manage</a></li>
+                        <li><a href="/createReport.html"
+                               class="nav-item nav-link {{ 'active' if active_page == 'create-report' else '' }}">Create post</a></li>
+                        <li><a href="/createTheme.html"
+                               class="nav-item nav-link {{ 'active' if active_page == 'create-theme' else '' }}">Create genre</a></li>
+                        <li><a href="/view.html"
+                               class="nav-item nav-link {{ 'active' if active_page == 'view' else '' }}">View
+                        </a></li>
+                        <li><a href="/search.html"
+                               class="nav-item nav-link {{ 'active' if active_page == 'search' else '' }}">Search
+                        </a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if session['logged_in'] == True %}
+                            <li>
+                                <a href=""
+                                class="nav-item nav-link {{ 'active' if active_page == 'logout' else '' }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    {{session["u_username"]}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout.html"
+                                class="nav-item nav-link {{ 'active' if active_page == 'logout' else '' }}">Logout</a>
+                            </li>
+
+                        {% else %}
+
+                            <li>
+                                <a href="/login.html"
+                                class="nav-item nav-link {{ 'active' if active_page == 'login' else '' }}">Login
+                                </a>
+                            </li>
+                            <li>
+                                <a href="register.html"
+                                class="nav-item nav-link {{ 'active' if active_page == 'register' else '' }}">Register
+                                </a>
+                            </li>
+
+
+
+                        {% endif %}
+                    </ul>
+
+
+
+
+                </div>
+
+            </nav>
+        </header>
+        {% block self_content %}{% endblock %}
+    </body>
+</html>
