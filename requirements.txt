@@ -27,5 +27,5 @@ Werkzeug==0.16.0
 flask_restful==0.3.7
 flask_imgur==0.1
 flask_jwt_extended==3.24.0
-opencv-python==4.1.2.30
+opencv-python==4.2.0.32
 exponent-server-sdk==0.3.1
